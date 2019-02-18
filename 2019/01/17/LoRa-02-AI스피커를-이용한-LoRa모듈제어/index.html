@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>[LoRa]_02_AI스피커를 이용한 LoRa모듈제어 - Devhyung | 개발 블로그</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="💡 Intro안녕하세요 &amp;quot;AI 스피커를 이용한 LoRa모듈제어&amp;quot;1부의 프로젝트 개념 소개 및 설계에 이어실제 개발을 진행하면서 알아갔던점들을 포스팅 해보겠습니다 ~">
+<meta name="keywords" content="LoRa,AI,AIspeaker,speaker,network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어">
+<meta property="og:url" content="http://devhyung.github.io/2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/index.html">
+<meta property="og:site_name" content="Devhyung | 개발 블로그">
+<meta property="og:description" content="💡 Intro안녕하세요 &amp;quot;AI 스피커를 이용한 LoRa모듈제어&amp;quot;1부의 프로젝트 개념 소개 및 설계에 이어실제 개발을 진행하면서 알아갔던점들을 포스팅 해보겠습니다 ~">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://devhyung.github.io/images/lora1.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/lora2.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/2_lora_recommend.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/2_게이트웨이.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/2_lora_recommend.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/2_end.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/2_ai.JPG">
+<meta property="og:image" content="http://devhyung.github.io/images/1차스케치.jpg">
+<meta property="og:image" content="http://devhyung.github.io/images/1차3D.jpg">
+<meta property="og:updated_time" content="2019-02-18T15:44:36.357Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어">
+<meta name="twitter:description" content="💡 Intro안녕하세요 &amp;quot;AI 스피커를 이용한 LoRa모듈제어&amp;quot;1부의 프로젝트 개념 소개 및 설계에 이어실제 개발을 진행하면서 알아갔던점들을 포스팅 해보겠습니다 ~">
+<meta name="twitter:image" content="http://devhyung.github.io/images/lora1.JPG">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/darcula.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131056848-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131056848-1');
+</script>
+
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/favi.ico" alt="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/lora.png" alt="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-01-17T14:00:07.000Z">2019-01-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/LoRa/">LoRa</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/LoRa/AISpeaker-Project/">AISpeaker Project</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20 minutes read (About 3018 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                [LoRa]_02_AI스피커를 이용한 LoRa모듈제어
+            
+        </h1>
+        <div class="content">
+            <h2 id="💡-Intro"><a href="#💡-Intro" class="headerlink" title="💡 Intro"></a>💡 Intro</h2><p>안녕하세요 <strong><code>&quot;AI 스피커를 이용한 LoRa모듈제어&quot;</code></strong><br>1부의 프로젝트 개념 소개 및 설계에 이어<br>실제 개발을 진행하면서 알아갔던점들을 포스팅 해보겠습니다 ~<br><a id="more"></a><br>이 포스팅 역시 전체의 소스코드나 이렇게 따라하세요 ! 라는 식의 가이드보다는<br>컨셉이나, 어떻게 생각을해서 아이디어로 실제로 옮겼는지에 대한 중점으로<br>기술하였습니다.</p>
+<p>아래는 혹시 도움이 될까하고 1부에서 이야기드렸던 연구논문 PDF파일<br>첨부했습니다 ~<br><strong><a href="/files/논문.pdf">📃 논문보기</a></strong></p>
+<hr>
+<h2 id="💡-Index"><a href="#💡-Index" class="headerlink" title="💡 Index"></a>💡 Index</h2><p>👉 LoRa쉴드에 대한 간단한 설명<br>👉 Gateway 구현<br>👉 LoRa End-device 구현<br>👉 AI Speaker 구현<br>👉 제품 디자인<br>👉 끝으로<br>의 순서대로 개발기를 써나갈 예정입니다. </p>
+<p>전에 피드백을 받고 본문 오른쪽에 목차가 뜨게끔 블로그 테마를 변경하였습니다 :D<br>개발기에 더불어 저번 포스팅에서 LoRa의 아키텍쳐나, 피지컬레이어의 구성을 보여줬는데<br>조금 어렵다고 말씀하시는 분들도 많고, 로라쉴드가 그래서 저기의 어느부분에 해당하는지에 대해서 궁금해 하시는 분들이 많아서 제가 도움받고 배움을 얻었던 ‘코드주’ 장병남 대표님께서 예전에 간단하게 설명해주신 ‘코드주’가 개발한 LoRa쉴드가<br>LoRa Alliance™이라는 회사가 제안하는 아키텍쳐의 어느부분을 좀더 개발하기 쉽게 도와주는지에 대해서 언급후 개발기를 진행해볼까 합니다. </p>
+<p>그러면 시작하겠습니다.</p>
+<hr>
+<h2 id="👉-LoRa쉴드에-대한-간단한-설명"><a href="#👉-LoRa쉴드에-대한-간단한-설명" class="headerlink" title="👉 LoRa쉴드에 대한 간단한 설명"></a>👉 LoRa쉴드에 대한 간단한 설명</h2><h3 id="✋-LoRa쉴드는-어떤-역할이죠"><a href="#✋-LoRa쉴드는-어떤-역할이죠" class="headerlink" title="✋ LoRa쉴드는 어떤 역할이죠 ?"></a>✋ LoRa쉴드는 어떤 역할이죠 ?</h3><center><br><img data-action="zoom" src="/images/lora1.JPG" alt="LoRa"><br><img data-action="zoom" src="/images/lora2.JPG" alt="LoRa쉴드"></center>
+
+<p>이전 1부포스팅에서 LoRa MAC구조의 설명중 그래서 로라쉴드는 어떤 부분의<br>기능을 도와주는지 몰랐던 분들을 위해 간략하게 설명하면<br>기존의 LoRa 하드에어와 LoRa Alliance가 정한 ClassA ~ C 사이의 설정및 기존 초기화하여<br>노드들과의 연결하는 부분들을 모듈화하여 간단하게 연결, 설정, 기능, 암호화등을 도와주고<br>아두이노와 연결, 사용가능하게 하는게 코드주 LoRa쉴드의 역할이라고 간단히 생각하시면<br>됩니다 ~ </p>
+<p>원본 코드주 장병남대표님의 설명 PDF 파일 첨부합니다 ~<br><strong><a href="/files/로라쉴드구조_비교.pdf">📃 PDF 보기</a></strong></p>
+<hr>
+<h2 id="👉-Gateway-구현"><a href="#👉-Gateway-구현" class="headerlink" title="👉 Gateway 구현"></a>👉 Gateway 구현</h2><h3 id="✋-Gateway-역할"><a href="#✋-Gateway-역할" class="headerlink" title="✋ Gateway 역할"></a>✋ Gateway 역할</h3><p><img src="/images/2_lora_recommend.JPG" alt="LoraWan network architecture"><br>1부에 소개되었던 사진입니다.<br>LoRaWAN이나 LoRa를 사용시 권장하는 방식인데<br>제가 번호를 태깅해놓았는데 여기에 해당하는 1번 역할을 하는것이 Gateway입니다.<br>end-device 사이의 메세지를 받고 central network server를 구성해서 보내두되구<br>다른 gateway끼리 통신을 주고 받아 자유롭게 구성을 하는<br>즉, 클라이언트가 end-device에 내리기전에 거치는 곳이라고 생각을 하면되는데<br>AI스피커를 활용해서 LoRa모듈을 제어하기위해서 거치는 플로우는<br>사용자 명령 -&gt; 외부망 -&gt;  LoRa end-device로의과정인데<br>외부망에서 LoRa end-device로의 직접적인 전달은 주파수가 달라 불가하기때문에<br>외부망과 LoRa end-device 사이의 LoRa게이트웨이를 설계하기로 계획했습니다. </p>
+<h3 id="✋-Gateway-구성"><a href="#✋-Gateway-구성" class="headerlink" title="✋ Gateway 구성"></a>✋ Gateway 구성</h3><center><br><img data-action="zoom" src="/images/2_게이트웨이.JPG" alt="게이트웨이"><br></center>
+
+<p>위에 보이는것처럼 게이트웨이는 집안의 외부망(공유기)에 접속하고자<br>베이스에는 WemosD1 (wifi Module)을 사용하여 공유기에 접속 특정 URL의 Request를<br>인식하거나, 외부망에서의 원격제어를 위해 사용하였고 그 위에 LoRa쉴드를 올려서<br>LoRa End-device에 신호를 전달하는 식으로 구성하고자 이렇게 구성하였습니다. </p>
+<h3 id="✋-Gateway-구현"><a href="#✋-Gateway-구현" class="headerlink" title="✋ Gateway 구현"></a>✋ Gateway 구현</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* ssid     = <span class="hljs-string">"YOUR_SSID"</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* password = <span class="hljs-string">"YOUR_SSID_PW"</span>;</span><br><span class="line"><span class="hljs-function">ESP8266WebServer <span class="hljs-title">server</span> <span class="hljs-params">( <span class="hljs-number">80</span> )</span></span>;</span><br><span class="line"><span class="hljs-comment">//16byte hex key</span></span><br><span class="line">String lora_app_key = <span class="hljs-string">"11 22 33 44 55 66 77 88 99 aa bb cc dd ee ff 00"</span>;  </span><br><span class="line"></span><br><span class="line">...(LoRa 쉴드 SNIPE 사용 기본 셋팅하는 부분)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    server.on ( <span class="hljs-string">"/on"</span>, customFunctionOn );</span><br><span class="line">    server.on ( <span class="hljs-string">"/off"</span>, customFunctionOff );</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">  server.handleClient();</span><br><span class="line">  <span class="hljs-keyword">char</span> addr[<span class="hljs-number">2</span>];</span><br><span class="line">  String msg;</span><br><span class="line">  sprintf(addr, <span class="hljs-string">"%d"</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// default값 </span></span><br><span class="line">  msg = (String)addr;</span><br><span class="line">  <span class="hljs-keyword">if</span> (SNIPE.lora_send(msg))</span><br><span class="line">  &#123;</span><br><span class="line">    DebugSerial.println(<span class="hljs-string">"send success"</span>);</span><br><span class="line">    String ver = SNIPE.lora_recv();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (ver != <span class="hljs-string">"AT_RX_TIMEOUT"</span> &amp;&amp; ver != <span class="hljs-string">"AT_RX_ERROR"</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      DebugSerial.println(ver);</span><br><span class="line">      DebugSerial.println(SNIPE.lora_getRssi());</span><br><span class="line">      DebugSerial.println(SNIPE.lora_getSnr());            </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      DebugSerial.println(<span class="hljs-string">"recv fail"</span>);</span><br><span class="line">      delay(<span class="hljs-number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> delay(<span class="hljs-number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">customFunctionOn</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">char</span> addr[<span class="hljs-number">2</span>];</span><br><span class="line">    String msg;</span><br><span class="line">    sprintf(addr, <span class="hljs-string">"%d"</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">// 스위치를 on 하라는 msg값을 1로 산정</span></span><br><span class="line">    msg = (String)addr;</span><br><span class="line">    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++)&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (SNIPE.lora_send(msg))</span><br><span class="line">        &#123;</span><br><span class="line">            String ver = SNIPE.lora_recv();</span><br><span class="line">            <span class="hljs-keyword">if</span> (ver != <span class="hljs-string">"AT_RX_TIMEOUT"</span> &amp;&amp; ver != <span class="hljs-string">"AT_RX_ERROR"</span>)</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line">            DebugSerial.println(<span class="hljs-string">"send success"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      delay(<span class="hljs-number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    server.send ( <span class="hljs-number">200</span>, <span class="hljs-string">"text/html"</span>, <span class="hljs-string">"test1"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이런식으로 Wemos AP를 연결시키고 나서 </p>
+<p>setup함수에 Wemos 보드 IP + on이나 off의 URL에 트리거를 겁니다.<br>트리거에 해당하는 함수를 하나 만들어놓아서 LoRa모듈에게 전체 브로드캐스팅하는<br>msg값을 0 = 기본, 1 = 키는것, 2 = 끄는것 이런식으로 내부적으로 정해서<br>gateway 부분에서는 보내고, end-device에서의 신호를 받고나서 받았다는 신호를 다시<br>게이트웨이 에게 보낼때 어떻게 처리해야될지를 중점적으로 생각하시고 구현하시면<br>좀더 다양한 컨셉에 적용가능 할 것 같습니다. </p>
+<p>현재는 msg라는 String하나로만 하였지만 여러 단말 end-device가 있다면<br>msg값뿐만이아닌 id값이라는 변수를 하나더 만들어서 end-device에서 보내는 msg를<br>자기 알고리즘에 분류후 id값도 확인해서 쓰면 어떨까 싶다는생각이였습니다.<br>EX )<br>msg = 11 이면 1번에게 1(키라는) 명령<br>msg = 21 이면 2번에게 1(키라는) 명령 이런식으루요 !<br><a href="https://github.com/codezoo-ltd/SNIPE" target="_blank" rel="noopener">📃 기본 샘플 코드 GITHUB(코드주)</a></p>
+<hr>
+<h2 id="👉-LoRa-End-device-구현"><a href="#👉-LoRa-End-device-구현" class="headerlink" title="👉 LoRa End-device 구현"></a>👉 LoRa End-device 구현</h2><h3 id="✋-LoRa-End-device-역할"><a href="#✋-LoRa-End-device-역할" class="headerlink" title="✋ LoRa End-device 역할"></a>✋ LoRa End-device 역할</h3><p><img src="/images/2_lora_recommend.JPG" alt="LoraWan network architecture"><br>2번에 해당하는 부분이 End-device입니다. 결국 명령을 게이트웨이로부터 받아서<br>실제 동작하는 부분을 의미하는건데 본 포스팅에는<br>아두이노 + 서보모터를 연결 회전력을 이용해서 가전의 스위치를 제어한다고 가정합니다. </p>
+<h3 id="✋-LoRa-End-device-구성"><a href="#✋-LoRa-End-device-구성" class="headerlink" title="✋ LoRa End-device 구성"></a>✋ LoRa End-device 구성</h3><center><br><img data-action="zoom" src="/images/2_end.JPG" alt="End-device"><br></center>
+
+<p>위에 보이는것처럼 아두이노와 + servo 모터를 연결 거기에 LoRa쉴드를 달아서<br>LoRa 게이트웨이로 붙어 날라온 msg값을 읽어서 특정 단말 device나<br>나한테 해당하는 명령어인지를 판단하여서 실행하게끔 구성 계획입니다. </p>
+<h3 id="✋-LoRa-End-device-구현"><a href="#✋-LoRa-End-device-구현" class="headerlink" title="✋ LoRa End-device 구현"></a>✋ LoRa End-device 구현</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;Servo.h&gt; //Servo 라이브러리를 추가</span><br><span class="line">Servo servo;      <span class="hljs-comment">//Servo 클래스로 servo객체 생성</span></span><br><span class="line"><span class="hljs-comment">//16byte hex key</span></span><br><span class="line">String lora_app_key = <span class="hljs-string">"11 22 33 44 55 66 77 88 99 aa bb cc dd ee ff 00"</span>;  </span><br><span class="line"></span><br><span class="line">... 추가 기타설정</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">  servo.attach(<span class="hljs-number">7</span>);     <span class="hljs-comment">//맴버함수인 attach : 핀 설정</span></span><br><span class="line">  <span class="hljs-comment">// put your setup code here, to run once:</span></span><br><span class="line">  ... SNIPE  사용 LoRa 통신설정</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        DebugSerial.println(<span class="hljs-string">"TEST"</span>);</span><br><span class="line">        String ver = SNIPE.lora_recv();</span><br><span class="line">        DebugSerial.println(ver); </span><br><span class="line">        delay(<span class="hljs-number">400</span>);</span><br><span class="line">        <span class="hljs-keyword">if</span> (ver != <span class="hljs-string">"AT_RX_TIMEOUT"</span> &amp;&amp; ver != <span class="hljs-string">"AT_RX_ERROR"</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          DebugSerial.println(ver);</span><br><span class="line">          memset(buffer, <span class="hljs-number">0x0</span>, sizeof(buffer));</span><br><span class="line">          ver.toCharArray(buffer, sizeof(buffer));</span><br><span class="line">          sscanf(buffer, <span class="hljs-string">"%d"</span>, &amp;addr);</span><br><span class="line">          DebugSerial.println(addr); </span><br><span class="line">      </span><br><span class="line">          <span class="hljs-keyword">if</span>(addr == <span class="hljs-number">1</span>)&#123;</span><br><span class="line">            led1_on();  </span><br><span class="line">            SNIPE.lora_send(<span class="hljs-string">"addr1_test"</span>); <span class="hljs-comment">//예를 들어서</span></span><br><span class="line">            delay(<span class="hljs-number">500</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(addr == <span class="hljs-number">2</span>)&#123;</span><br><span class="line">            led1_off();</span><br><span class="line">            SNIPE.lora_send(<span class="hljs-string">"addr2_test"</span>); <span class="hljs-comment">//예를 들어서</span></span><br><span class="line">            delay(<span class="hljs-number">500</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="hljs-keyword">else</span>&#123;</span><br><span class="line">            test();</span><br><span class="line">            SNIPE.lora_send(<span class="hljs-string">"etc"</span>); <span class="hljs-comment">//예를 들어서</span></span><br><span class="line">            delay(<span class="hljs-number">500</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        delay(<span class="hljs-number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 모터 동작 </span></span><br><span class="line"><span class="hljs-comment">// 실제 테스트 해보니 120도의 이동으로도 껏다킬수있습니다. </span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">led1_on</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">  <span class="hljs-keyword">int</span> angle;</span><br><span class="line">   <span class="hljs-keyword">for</span>(angle = <span class="hljs-number">0</span>; angle &lt; <span class="hljs-number">120</span>; angle++) </span><br><span class="line">  &#123; </span><br><span class="line">    servo.write(angle); </span><br><span class="line">    delay(<span class="hljs-number">4</span>);</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">led1_off</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">  <span class="hljs-keyword">int</span> angle;</span><br><span class="line">  <span class="hljs-keyword">for</span>(angle = <span class="hljs-number">120</span>; angle &gt; <span class="hljs-number">0</span>; angle--) </span><br><span class="line">  &#123; </span><br><span class="line">    servo.write(angle); </span><br><span class="line">    delay(<span class="hljs-number">4</span>); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이런식의 구성을 통하여 주요 핵심코드는 </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">memset(buffer, <span class="hljs-number">0x0</span>, sizeof(buffer));</span><br><span class="line">ver.toCharArray(buffer, sizeof(buffer));</span><br><span class="line">sscanf(buffer, <span class="hljs-string">"%d"</span>, &amp;addr);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span>(addr == <span class="hljs-number">1</span>)&#123;</span><br><span class="line">&#125;...</span><br></pre></td></tr></table></figure>
+<p>쪽의 브로드캐스트된 msg값을 열어 자기에 해당하는 쪽을 판단하는 부분입니다.<br>이 부분을 Id + Msg 의 구성으로 바꾸면 더더욱 많은 단말과, 게이트웨이의 통신을<br>할수있다는 추가 더 진행해볼만한 연구가 있다고 생각한 부분입니다. </p>
+<p>보는것처럼 게이트웨이에서의 명령 하달시 0 ~ 120, 120 ~ 0도의 이동으로 초기<br>유투브영상처럼 각도만 맞추고 붙여놓은다면 가전의 스위치 누르는 힘정도는 나와서<br>원격으로 제어가 가능했습니다 ! </p>
+<hr>
+<h2 id="👉-AI-Speaker-구현"><a href="#👉-AI-Speaker-구현" class="headerlink" title="👉 AI Speaker 구현"></a>👉 AI Speaker 구현</h2><h3 id="✋-AI-Speaker-구성"><a href="#✋-AI-Speaker-구성" class="headerlink" title="✋ AI Speaker 구성"></a>✋ AI Speaker 구성</h3><center><br><img data-action="zoom" src="/images/2_ai.JPG" alt="AI 스피커"><br></center>
+
+<p>위에 보이는것은 실제 터미널 동작 스크린샷입니다.<br>python 3버전을 이용 노트북에서 테스트 동작한 사진이구요<br>구글 어시스턴트 STT sample코드를 이용하여서 구현하였습니다. </p>
+<h3 id="✋-AI-Speaker-구현"><a href="#✋-AI-Speaker-구현" class="headerlink" title="✋ AI Speaker 구현"></a>✋ AI Speaker 구현</h3><p>코드부분은 따로 개인 Github에 구글 STT 샘플코드의 라이센스 확인여부후에<br>기재하겠습니다 ! </p>
+<p>개략적으로는 우선 D.I.Y에 초점을 둔 AI Speaker인지라 본 포스팅 당시에는<br>음성으로 ‘예 알겠습니다’ 와 같은 소리는 내어지지 않지만<br>N-Gram에서의 2~3수준의  바이, 트라이그램 알고리즘을 간략하게 커스터마이징하여<br>자기가 정해놓은 수준의 위치 또는 단어를 이용하여서 매핑하는 식으로 구현했습니다. </p>
+<p>이 부분은 따로 포스팅을 하던지, 개인 깃허브에 Readme에 기재하던지 하겠습니다 ~<br>아니면 구글 STT example 코드를 가지고 따로 해보셔도 무방할거같습니다 </p>
+<p>결과가 나오는 부분에 Wemos D1보드가 연결된 URL/트리거건 메서드이름<br>이렇게 연결하면 외부에서도 접속가능한 컨셉은 유지가 되어지니까요 ! </p>
+<hr>
+<h2 id="👉-제품-디자인"><a href="#👉-제품-디자인" class="headerlink" title="👉 제품 디자인"></a>👉 제품 디자인</h2><p>맨처음 저런식의 위에 보여드렸던<br>게이트웨이, End-device, AI스피커등 빵판이나 전체적인 회로 노출을 조금 보정코자<br>여기단계까지의 진행을 생각하시는 분도 있어서 개발기 쓸때 알려드렸으면 좋겠다<br>생각하고 여담으로 쓴 부분입니다 ~ </p>
+<p>처음디자인을 해서 이런식으로 스케칭을 거쳤는데요 ~ </p>
+<center><img src="/images/1차스케치.jpg" alt="1차 스케치"></center>
+
+<p>이정도의 스케칭을 끝나고 3D작업을 들어갔습니다. </p>
+<center><img src="/images/1차3D.jpg" alt="1차 3D"></center>
+
+<p>이렇게까지의 진행도 하여서 실제 끼어보기도 하였는데<br>물론… 저보다 디자인이나 3D 프린팅 못하시는분은 없겠지만ㅠㅠ<br>꼭 … 사이즈는 넉넉히 잡으세요 … </p>
+<p>이런식의 껍데기를 구현해서 씌어보는것도 내구성이나 제품성에 좋은 영향을 끼칠수 있을거<br>같아서 한번 진행해본 여담입니다 :D</p>
+<hr>
+<h2 id="👉-끝으로"><a href="#👉-끝으로" class="headerlink" title="👉 끝으로"></a>👉 끝으로</h2><p>전체적인 소스공개는 제작자나 이글을 보시고 따라하시려 하시는 분들의<br>창의성을 한군데로 모아버리는 효과가 있을거같아서 대부분의 동작코드는 전부 올렸지만<br>상세한 핀구성셋팅이나 전체 코드 공개는 고민후에 제거하고 이렇게 핵심동작 코드<br>설명으로 대체 하게되었습니다. </p>
+<p>물론 포스팅을 하다가 제 지식이 부족하여 틀리게 말한것도 잘못 알고있는것도<br>오타도 많을수도 있지만 부디 넓은 마음으로 예쁘게 봐주셨으면 좋겠습니다. </p>
+<p>긴 글 읽어주시느라 감사합니다.<br>질문은 항상 메일이든 댓글이든 감사히 받겠습니다. </p>
+<p>새해 복 많이 받으세요 ~ </p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/AI/">AI</a>, <a class="has-link-grey -link" href="/tags/AIspeaker/">AIspeaker</a>, <a class="has-link-grey -link" href="/tags/LoRa/">LoRa</a>, <a class="has-link-grey -link" href="/tags/network/">network</a>, <a class="has-link-grey -link" href="/tags/speaker/">speaker</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/18/Hexo/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">[Hexo]-00-기본환경설정</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/12/17/LoRa-01-AI스피커를-이용한-LoRa모듈제어-개요/">
+                <span class="level-item">[LoRa]_01_AI스피커를 이용한 LoRa모듈제어</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://devhyung.github.io/2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/';
+        this.page.identifier = '2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'devhyung' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/my.jpg" alt="HyungJune, Park">
+                    
+                    <p class="is-size-4 is-block">
+                        HyungJune, Park
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        경희대학교 컴퓨터공학과  👨🏻‍💻
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>경기도 수원시</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        3
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/devhyung">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="http://github.com/devhyung">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="http://facebook.com/khuphj">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="/">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Linkedin" href="/">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/devhyung" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://github.com/devhyung</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://devhyung.blogspot.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">약력</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">https://devhyung.blogspot.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="khuphj@gmail.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">메일</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">khuphj@gmail.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/AIspeaker/" style="font-size: 20px;">AIspeaker</a> <a href="/tags/LoRa/" style="font-size: 20px;">LoRa</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/network/" style="font-size: 20px;">network</a> <a href="/tags/speaker/" style="font-size: 20px;">speaker</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <ul class="menu-list">
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/AI/">
+                        <span class="level-start">
+                            <span class="level-item">AI</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/AIspeaker/">
+                        <span class="level-start">
+                            <span class="level-item">AIspeaker</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/LoRa/">
+                        <span class="level-start">
+                            <span class="level-item">LoRa</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/blog/">
+                        <span class="level-start">
+                            <span class="level-item">blog</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/git/">
+                        <span class="level-start">
+                            <span class="level-item">git</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/hexo/">
+                        <span class="level-start">
+                            <span class="level-item">hexo</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">1</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/network/">
+                        <span class="level-start">
+                            <span class="level-item">network</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="level is-marginless" href="/tags/speaker/">
+                        <span class="level-start">
+                            <span class="level-item">speaker</span>
+                        </span>
+                        <span class="level-end">
+                            <span class="level-item tag">2</span>
+                        </span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#💡-Intro">
+        <span class="has-mr-6">1</span>
+        <span>💡 Intro</span>
+        </a></li><li>
+        <a class="is-flex" href="#💡-Index">
+        <span class="has-mr-6">2</span>
+        <span>💡 Index</span>
+        </a></li><li>
+        <a class="is-flex" href="#👉-LoRa쉴드에-대한-간단한-설명">
+        <span class="has-mr-6">3</span>
+        <span>👉 LoRa쉴드에 대한 간단한 설명</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-LoRa쉴드는-어떤-역할이죠">
+        <span class="has-mr-6">3.1</span>
+        <span>✋ LoRa쉴드는 어떤 역할이죠 ?</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-Gateway-구현">
+        <span class="has-mr-6">4</span>
+        <span>👉 Gateway 구현</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-Gateway-역할">
+        <span class="has-mr-6">4.1</span>
+        <span>✋ Gateway 역할</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-Gateway-구성">
+        <span class="has-mr-6">4.2</span>
+        <span>✋ Gateway 구성</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-Gateway-구현">
+        <span class="has-mr-6">4.3</span>
+        <span>✋ Gateway 구현</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-LoRa-End-device-구현">
+        <span class="has-mr-6">5</span>
+        <span>👉 LoRa End-device 구현</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-LoRa-End-device-역할">
+        <span class="has-mr-6">5.1</span>
+        <span>✋ LoRa End-device 역할</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-LoRa-End-device-구성">
+        <span class="has-mr-6">5.2</span>
+        <span>✋ LoRa End-device 구성</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-LoRa-End-device-구현">
+        <span class="has-mr-6">5.3</span>
+        <span>✋ LoRa End-device 구현</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-AI-Speaker-구현">
+        <span class="has-mr-6">6</span>
+        <span>👉 AI Speaker 구현</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-AI-Speaker-구성">
+        <span class="has-mr-6">6.1</span>
+        <span>✋ AI Speaker 구성</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-AI-Speaker-구현">
+        <span class="has-mr-6">6.2</span>
+        <span>✋ AI Speaker 구현</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-제품-디자인">
+        <span class="has-mr-6">7</span>
+        <span>👉 제품 디자인</span>
+        </a></li><li>
+        <a class="is-flex" href="#👉-끝으로">
+        <span class="has-mr-6">8</span>
+        <span>👉 끝으로</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/LoRa/">
+            <span class="level-start">
+                <span class="level-item">LoRa</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/LoRa/AISpeaker-Project/">
+            <span class="level-start">
+                <span class="level-item">AISpeaker Project</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/19/TEST/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="TEST">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-18T15:47:26.000Z">2019-02-19</time></div>
+                    <a href="/2019/02/19/TEST/" class="has-link-black-ter is-size-6">TEST</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/18/Hexo/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/hexo_images/logo.png" alt="[Hexo]-00-기본환경설정">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-18T06:10:02.000Z">2019-02-18</time></div>
+                    <a href="/2019/02/18/Hexo/" class="has-link-black-ter is-size-6">[Hexo]-00-기본환경설정</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/lora.png" alt="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-17T14:00:07.000Z">2019-01-17</time></div>
+                    <a href="/2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/" class="has-link-black-ter is-size-6">[LoRa]_02_AI스피커를 이용한 LoRa모듈제어</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/LoRa/">LoRa</a> / <a class="has-link-grey -link" href="/categories/LoRa/AISpeaker-Project/">AISpeaker Project</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/12/17/LoRa-01-AI스피커를-이용한-LoRa모듈제어-개요/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/lora.png" alt="[LoRa]_01_AI스피커를 이용한 LoRa모듈제어">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-12-16T16:41:09.000Z">2018-12-17</time></div>
+                    <a href="/2018/12/17/LoRa-01-AI스피커를-이용한-LoRa모듈제어-개요/" class="has-link-black-ter is-size-6">[LoRa]_01_AI스피커를 이용한 LoRa모듈제어</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/LoRa/">LoRa</a> / <a class="has-link-grey -link" href="/categories/LoRa/AISpeaker-Project/">AISpeaker Project</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Catalogue
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#💡-Intro">
+        <span class="has-mr-6">1</span>
+        <span>💡 Intro</span>
+        </a></li><li>
+        <a class="is-flex" href="#💡-Index">
+        <span class="has-mr-6">2</span>
+        <span>💡 Index</span>
+        </a></li><li>
+        <a class="is-flex" href="#👉-LoRa쉴드에-대한-간단한-설명">
+        <span class="has-mr-6">3</span>
+        <span>👉 LoRa쉴드에 대한 간단한 설명</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-LoRa쉴드는-어떤-역할이죠">
+        <span class="has-mr-6">3.1</span>
+        <span>✋ LoRa쉴드는 어떤 역할이죠 ?</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-Gateway-구현">
+        <span class="has-mr-6">4</span>
+        <span>👉 Gateway 구현</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-Gateway-역할">
+        <span class="has-mr-6">4.1</span>
+        <span>✋ Gateway 역할</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-Gateway-구성">
+        <span class="has-mr-6">4.2</span>
+        <span>✋ Gateway 구성</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-Gateway-구현">
+        <span class="has-mr-6">4.3</span>
+        <span>✋ Gateway 구현</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-LoRa-End-device-구현">
+        <span class="has-mr-6">5</span>
+        <span>👉 LoRa End-device 구현</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-LoRa-End-device-역할">
+        <span class="has-mr-6">5.1</span>
+        <span>✋ LoRa End-device 역할</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-LoRa-End-device-구성">
+        <span class="has-mr-6">5.2</span>
+        <span>✋ LoRa End-device 구성</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-LoRa-End-device-구현">
+        <span class="has-mr-6">5.3</span>
+        <span>✋ LoRa End-device 구현</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-AI-Speaker-구현">
+        <span class="has-mr-6">6</span>
+        <span>👉 AI Speaker 구현</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#✋-AI-Speaker-구성">
+        <span class="has-mr-6">6.1</span>
+        <span>✋ AI Speaker 구성</span>
+        </a></li><li>
+        <a class="is-flex" href="#✋-AI-Speaker-구현">
+        <span class="has-mr-6">6.2</span>
+        <span>✋ AI Speaker 구현</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#👉-제품-디자인">
+        <span class="has-mr-6">7</span>
+        <span>👉 제품 디자인</span>
+        </a></li><li>
+        <a class="is-flex" href="#👉-끝으로">
+        <span class="has-mr-6">8</span>
+        <span>👉 끝으로</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/LoRa/">
+            <span class="level-start">
+                <span class="level-item">LoRa</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/LoRa/AISpeaker-Project/">
+            <span class="level-start">
+                <span class="level-item">AISpeaker Project</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/02/19/TEST/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="TEST">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-18T15:47:26.000Z">2019-02-19</time></div>
+                    <a href="/2019/02/19/TEST/" class="has-link-black-ter is-size-6">TEST</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/18/Hexo/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/hexo_images/logo.png" alt="[Hexo]-00-기본환경설정">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-18T06:10:02.000Z">2019-02-18</time></div>
+                    <a href="/2019/02/18/Hexo/" class="has-link-black-ter is-size-6">[Hexo]-00-기본환경설정</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/lora.png" alt="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-17T14:00:07.000Z">2019-01-17</time></div>
+                    <a href="/2019/01/17/LoRa-02-AI스피커를-이용한-LoRa모듈제어/" class="has-link-black-ter is-size-6">[LoRa]_02_AI스피커를 이용한 LoRa모듈제어</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/LoRa/">LoRa</a> / <a class="has-link-grey -link" href="/categories/LoRa/AISpeaker-Project/">AISpeaker Project</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/12/17/LoRa-01-AI스피커를-이용한-LoRa모듈제어-개요/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/lora.png" alt="[LoRa]_01_AI스피커를 이용한 LoRa모듈제어">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-12-16T16:41:09.000Z">2018-12-17</time></div>
+                    <a href="/2018/12/17/LoRa-01-AI스피커를-이용한-LoRa모듈제어-개요/" class="has-link-black-ter is-size-6">[LoRa]_01_AI스피커를 이용한 LoRa모듈제어</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/LoRa/">LoRa</a> / <a class="has-link-grey -link" href="/categories/LoRa/AISpeaker-Project/">AISpeaker Project</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/favi.ico" alt="[LoRa]_02_AI스피커를 이용한 LoRa모듈제어" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 devhyung&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
