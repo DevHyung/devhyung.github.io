@@ -15,10 +15,13 @@
 <meta property="og:site_name" content="Devhyung | 개발 블로그">
 <meta property="og:description" content="💡 IntroHexo framework 와 Git을 이용 간단한 블로그설정에대한포스팅입니다.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-21T02:45:43.893Z">
+<meta property="og:image" content="http://devhyung.github.io/hexo_images/concept.png">
+<meta property="og:image" content="http://devhyung.github.io/hexo_images/recommend.png">
+<meta property="og:updated_time" content="2019-02-21T05:30:17.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Hexo]-01-hexo 설치 및 비교">
 <meta name="twitter:description" content="💡 IntroHexo framework 와 Git을 이용 간단한 블로그설정에대한포스팅입니다.">
+<meta name="twitter:image" content="http://devhyung.github.io/hexo_images/concept.png">
 
 
 
@@ -162,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 929 words)
+                    10 minutes read (About 1511 words)
                 </span>
                 
             </div>
@@ -176,10 +179,9 @@
         <div class="content">
             <h2 id="💡-Intro"><a href="#💡-Intro" class="headerlink" title="💡 Intro"></a>💡 Intro</h2><p>Hexo framework 와 Git을 이용 간단한 블로그설정에대한<br>포스팅입니다.<br><a id="more"></a></p>
 <hr>
-<h2 id="💡-Index"><a href="#💡-Index" class="headerlink" title="💡 Index"></a>💡 Index</h2><p>👉 Why select hexo?<br>👉 Preparation<br>👉 Init<br>👉 Build &amp; Deploy<br>👉 Customizing</p>
-<p>의 순서대로 진행됩니다. </p>
+<h2 id="💡-Index"><a href="#💡-Index" class="headerlink" title="💡 Index"></a>💡 Index</h2><p>👉 Why select hexo?<br>👉 Preparation<br>👉 Init<br>👉 Build &amp; Deploy<br>👉 Customizing<br>👉 How to apply NLP LAB ?<br>의 순서대로 진행됩니다. </p>
 <hr>
-<h2 id="👉-Why-select-hexo"><a href="#👉-Why-select-hexo" class="headerlink" title="👉 Why select hexo?"></a>👉 Why select hexo?</h2><h3 id="🌕-PPT-gt-Blog-제안이유"><a href="#🌕-PPT-gt-Blog-제안이유" class="headerlink" title="🌕 PPT -&gt; Blog 제안이유"></a>🌕 PPT -&gt; Blog 제안이유</h3><p>ㅡ 논문, 북세미나의 PPT의 버전관리나 재열람시 이해도 문제…<br>ㅡ 연구실내만이 아닌 <strong>먼 미래</strong>의 다른 연구원들간의 소통가능성<br>ㅡ 문어체 말구 구어체식으로 포스팅시 이해도가 더필요! (그만큼 힘들겠지…)<br>ㅡ 링크달거나, 추가설명, 재발표시 변경용이</p>
+<h2 id="👉-Why-select-hexo"><a href="#👉-Why-select-hexo" class="headerlink" title="👉 Why select hexo?"></a>👉 Why select hexo?</h2><h3 id="🌕-PPT-gt-Blog-제안이유"><a href="#🌕-PPT-gt-Blog-제안이유" class="headerlink" title="🌕 PPT -&gt; Blog 제안이유"></a>🌕 PPT -&gt; Blog 제안이유</h3><p>ㅡ 논문, 북세미나의 PPT의 버전관리나 재열람시 이해도 문제…<br>ㅡ 연구실내만이 아닌 <strong>먼 미래</strong>의 다른 연구원들간의 소통가능성<br>ㅡ 문어체 말구 구어체식으로 포스팅시 이해도가 더필요! (그만큼 힘들겠지…)<br>ㅡ 링크달거나, 추가설명, 재발표시 변경용이<br>ㅡ 논문리뷰나, 테크블로그의 잘된 사례가 많다 (부럽다..)<br>예시 1) <a href="https://github.com/YBIGTA/DeepNLP-Study/wiki/Attention-Is-All-You-Need-%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0" target="_blank" rel="noopener">논문리뷰 git </a><br>예시 2) <a href="http://jaejunyoo.blogspot.com/2017/01/generative-adversarial-nets-1.html" target="_blank" rel="noopener">Jaejun Yoo’s 테크블로그? 논문리뷰블로그</a></p>
 <h3 id="🌕-다른-프레임워크간의-비교"><a href="#🌕-다른-프레임워크간의-비교" class="headerlink" title="🌕 다른 프레임워크간의 비교"></a>🌕 다른 프레임워크간의 비교</h3><p>정적페이지 블로그 프레임워크 중에서 유명한것 중에 대표적으로 <strong><code>Hexo</code></strong>, <strong><code>Hugo</code></strong>, <strong><code>Jekyll</code></strong> 이 있다.</p>
 <h4 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h4><p>ㅡ Node js 기반<br>ㅡ 한글 레퍼런스 + 사용자수 꽤 많음<br>ㅡ 테마 여러개 많음<br>ㅡ 플러그인과 확장성 좋다함<br>ㅡ 근데 죄다 중국개발자님들…</p>
 <h4 id="Hugo"><a href="#Hugo" class="headerlink" title="Hugo"></a>Hugo</h4><p>ㅡ Go 기반<br>ㅡ 빌드 빠르다고 함<br>ㅡ 문서화 깔끔함<br>ㅡ 한글 레퍼런스 거의 없음<br>ㅡ 사실 뭐가 좋은지 모르겠다…</p>
@@ -199,6 +201,17 @@
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>프로젝트 설정은 <code>_config.yml</code>파일을 수정하면 됨<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Writer, IT Blog	# 타이틀</span><br><span class="line">subtitle: Eirc Han&apos;s IT Blog using Hexo # 서브 타이틀</span><br><span class="line">description: Eirc Han&apos;s IT Blog using Hexo # 블로그 설명</span><br><span class="line">author: Eric Han # 저자 이름</span><br><span class="line">language: en # 기본 언어. 다국어 지원</span><br><span class="line">timezone: Asia/Seoul # 해당 타임존 설정 (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: http://devhyung.github.io/ # 앞에서 만든 github page 주소</span><br><span class="line">root: / # 기본은 / 이고 만약 서브디렉토리 구조를 가진다면 루트를 지정하는 부분.</span><br><span class="line">permalink: :year/:month/:day/:title/ # 기본 permalink (고정 url). 새글 생성 시 자동으로 지정된 형식의 URL이 할당된다.</span><br><span class="line">permalink_defaults:</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/devhyung/devhyung.github.io.git</span><br></pre></td></tr></table></figure></p>
 <p>배포하려면<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate </span><br><span class="line">$ hexo deploy</span><br><span class="line">또는</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="👉-How-to-apply-NLP-LAB"><a href="#👉-How-to-apply-NLP-LAB" class="headerlink" title="👉 How to apply NLP LAB ?"></a>👉 How to apply NLP LAB ?</h2><p><img data-action="zoom" src="/hexo_images/concept.png" alt="Concept"><br>위의 그림처럼 <code>&lt;github name&gt;.github.io.git</code> repository 하나랑<br><code>blog</code> repository 총 두개가 필요<br>hexo 를 사용하여 generate 까지 과정을 거치면 기본 폴더구조에서<br>아래와같이 <strong> public </strong> 폴더가 추가된다<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">. # 블로그 루트 폴더</span><br><span class="line">├─ _config.yml # 설정 파일</span><br><span class="line">├─ package.json</span><br><span class="line">├─ scaffolds # 스캐폴드(양식)</span><br><span class="line">├─ source # 소스 폴더</span><br><span class="line">|  ├─ _drafts # 초안</span><br><span class="line">|  └─ _posts # 포스트</span><br><span class="line">└─ themes # 테마 폴더</span><br><span class="line">+++</span><br><span class="line">  public/  # 실제 md 파일을 HTML 코드로 변환된 파일들이 모인 폴더</span><br></pre></td></tr></table></figure></p>
+<p>저 <strong> public </strong> 만 <code>&lt;github name&gt;.github.io.git</code> 에 PUSH 를 하면 페이지 셋팅이 끝나지만<br>여러사람이 동시에 작업을 할것을 고려 <strong>public</strong> 폴더를 제외한<br>나머지 파일들의 버전관리나 최신버전유지가 필요하다<br>그래서 <code>blog.git</code> repo도 필요함<br>하지만 <code>blog.git</code> repo의 크기가 생각보다 크다 (npm install 할때의 library + content JSON이라는 파일이 우리가 MD 작성시<br>모든 코드들이 저 JSON에 포함되서 읽어서 블로그로 보여주는 식인지라 포스팅이 늘어날수록 커짐)<br>거기에다가 여러명이 동시의 <code>blog.git</code> 의 repo 를 직접들어와 포스팅작업을하고, 임시저장등등시 버전이 꼬일 가능성이나<br>파일들의 충돌이 빈벌할 가능성이 많다고 판단하였다</p>
+<p><strong> 그래서 제안하는 바는 !! </strong><br>아래 그림과 같이 <code>blog.git</code> repo과의 동일환경을 제공을 하면</p>
+<ol>
+<li>Local 서버를 열어 포스팅작업을 마무리 한다 ($ hexo s 키워드)</li>
+<li><code>blog.git</code> repo을 clone 또는 pull 하여 최신버전 유지후 </li>
+<li>Local에서 작업한 <code>.md</code> 파일과 <code>etc 이미지, 리소스파일</code> 등을 추가하고 </li>
+<li><code>blog.git</code> repo 의 변경부분을 commit (이때 작성자 또는 메세지 규칙정하고)</li>
+<li>Hexo 를 deploy 하는식으로<br>라는 방식을 제안한다<br><img data-action="zoom" src="/hexo_images/recommend.png" alt="제안하는 블로그 버전관리"></li>
+</ol>
 <hr>
 <h2 id="👉-참고-개발환경"><a href="#👉-참고-개발환경" class="headerlink" title="👉 (참고)개발환경"></a>👉 (참고)개발환경</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mac Book Pro  ( Mojave 10.14.3 64bit )</span><br></pre></td></tr></table></figure>
         </div>
@@ -645,8 +658,12 @@
         <span class="has-mr-6">6.2</span>
         <span>🌕 배포</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#👉-참고-개발환경">
+        <a class="is-flex" href="#👉-How-to-apply-NLP-LAB">
         <span class="has-mr-6">7</span>
+        <span>👉 How to apply NLP LAB ?</span>
+        </a></li><li>
+        <a class="is-flex" href="#👉-참고-개발환경">
+        <span class="has-mr-6">8</span>
         <span>👉 (참고)개발환경</span>
         </a></li></ul>
         </div>
@@ -839,8 +856,12 @@
         <span class="has-mr-6">6.2</span>
         <span>🌕 배포</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#👉-참고-개발환경">
+        <a class="is-flex" href="#👉-How-to-apply-NLP-LAB">
         <span class="has-mr-6">7</span>
+        <span>👉 How to apply NLP LAB ?</span>
+        </a></li><li>
+        <a class="is-flex" href="#👉-참고-개발환경">
+        <span class="has-mr-6">8</span>
         <span>👉 (참고)개발환경</span>
         </a></li></ul>
         </div>
