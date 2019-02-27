@@ -7,21 +7,21 @@
 
 
 
-    <meta name="description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.  1. Introduction 이미지에 대한 알고리즘 뿐만 아니라 자연스러운 문장을 만들기 위해 이미지에 대한 해석과 언">
+    <meta name="description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
 <meta name="keywords" content="Image Captioning,review">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Attend to You: Personalized Image Captioning with Context Sequence Memory Networks Review">
 <meta property="og:url" content="http://devhyung.github.io/2019/02/27/Attend-to-You-Personalized-Image-Captioning-with-Context-Sequence-Memory-Networks/index.html">
 <meta property="og:site_name" content="Devhyung | 개발 블로그">
-<meta property="og:description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.  1. Introduction 이미지에 대한 알고리즘 뿐만 아니라 자연스러운 문장을 만들기 위해 이미지에 대한 해석과 언">
+<meta property="og:description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.imgur.com/NdPFKhP.png">
 <meta property="og:image" content="https://i.imgur.com/B3wEIkU.png">
 <meta property="og:image" content="https://i.imgur.com/Xe9EzI7.png">
-<meta property="og:updated_time" content="2019-02-27T23:25:47.801Z">
+<meta property="og:updated_time" content="2019-02-27T23:31:11.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Attend to You: Personalized Image Captioning with Context Sequence Memory Networks Review">
-<meta name="twitter:description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.  1. Introduction 이미지에 대한 알고리즘 뿐만 아니라 자연스러운 문장을 만들기 위해 이미지에 대한 해석과 언">
+<meta name="twitter:description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
 <meta name="twitter:image" content="https://i.imgur.com/NdPFKhP.png">
 
 
@@ -160,7 +160,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 minutes read (About 2055 words)
+                    14 minutes read (About 2056 words)
                 </span>
                 
             </div>
@@ -173,7 +173,8 @@
         </h1>
         <div class="content">
             <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><ul>
-<li>다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.</li>
+<li>다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.<a id="more"></a>
+</li>
 </ul>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><ul>
 <li>이미지에 대한 알고리즘 뿐만 아니라 자연스러운 문장을 만들기 위해 이미지에 대한 해석과 언어 모델을 연결시켜야 됐다.</li>
@@ -191,7 +192,9 @@
 <li>(c): 새로운 아웃풋 단어가 만들어 진다면 word output을 업데이트한다.</li>
 <li>인풋은 특정 유저의 query image $$I_q$$이고 아웃풋은 문장이다. $${y_t}=y_1,…,y_T$$</li>
 <li>즉, $${y_t}$$는 해쉬 태그와 게시글에 대응한다.</li>
-<li>선택적인 인풋은 메모리에 더해지는 해당 유저의 활성 단어들과 같은 context 정보이다.<h2 id="4-1-Construction-of-Context-Memory"><a href="#4-1-Construction-of-Context-Memory" class="headerlink" title="4.1. Construction of Context Memory"></a>4.1. Construction of Context Memory</h2></li>
+<li>선택적인 인풋은 메모리에 더해지는 해당 유저의 활성 단어들과 같은 context 정보이다.</li>
+</ul>
+<h2 id="4-1-Construction-of-Context-Memory"><a href="#4-1-Construction-of-Context-Memory" class="headerlink" title="4.1. Construction of Context Memory"></a>4.1. Construction of Context Memory</h2><ul>
 <li>세 가지 종류의 context 정보를 저장하기 위해 메모리를 만들었다. <ol>
 <li>쿼리 이미지에 대한 표현을 위한 <em>image memory</em></li>
 <li>유저의 이전 게시글을 기반으로 하고 TF-IDF로 가중치를 둔 D개의 빈번한 단어들에 대한 <em>user context memory</em></li>
@@ -232,10 +235,8 @@
 </ul>
 <p><strong>Word Output Memory</strong></p>
 <ul>
-<li><p>word output memory에 이전에 만들어진 일련의 단어들 $$y_1,…,y_{t-1}$$을 삽입했다. 다음과 같이 표현된다.</p>
-</li>
-<li><p>$$o^a_j=W^a_e y_j, o^c_j = W^c_e;y_j; j \in 1,…,t-1$$</p>
-</li>
+<li>word output memory에 이전에 만들어진 일련의 단어들 $$y_1,…,y_{t-1}$$을 삽입했다. 다음과 같이 표현된다.</li>
+<li>$$o^a_j=W^a_e y_j, o^c_j = W^c_e;y_j; j \in 1,…,t-1$$</li>
 <li><p>$$m_^{a/c}_{ot,j}=ReLU(W_h[o^{a/c}_j]+b_h)$$</p>
 </li>
 <li><p>$$y_j$$는 j번째 이전 단어에 대한 one-hot vector이다.</p>
@@ -293,10 +294,7 @@
 <h1 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h1><p><strong>post generation</strong><br><img src="https://i.imgur.com/B3wEIkU.png" alt="Imgur"></p>
 <p><strong>hashtag prediction</strong><br><img src="https://i.imgur.com/Xe9EzI7.png" alt="Imgur"></p>
 <h1 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h1><p><a href="https://cesc-park/attend2u" target="_blank" rel="noopener">https://cesc-park/attend2u</a><br><a href="https://github.com/YBIGTA" target="_blank" rel="noopener">https://github.com/YBIGTA</a></p>
-<script id="dsq-count-scr" src="//nlp-with-koding.disqus.com/count.js" async></script>
-
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
-
+<!--<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113467528-1"></script>
 <script>
