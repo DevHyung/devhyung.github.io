@@ -7,21 +7,21 @@
 
 
 
-    <meta name="description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
+    <meta name="description" content="📃 논문 보기 Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
 <meta name="keywords" content="Image Captioning,review">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Attend to You: Personalized Image Captioning with Context Sequence Memory Networks Review">
 <meta property="og:url" content="http://devhyung.github.io/2019/02/27/Attend-to-You-Personalized-Image-Captioning-with-Context-Sequence-Memory-Networks/index.html">
 <meta property="og:site_name" content="Devhyung | 개발 블로그">
-<meta property="og:description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
+<meta property="og:description" content="📃 논문 보기 Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.imgur.com/NdPFKhP.png">
 <meta property="og:image" content="https://i.imgur.com/B3wEIkU.png">
 <meta property="og:image" content="https://i.imgur.com/Xe9EzI7.png">
-<meta property="og:updated_time" content="2019-02-27T23:32:31.508Z">
+<meta property="og:updated_time" content="2019-02-28T00:39:03.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Attend to You: Personalized Image Captioning with Context Sequence Memory Networks Review">
-<meta name="twitter:description" content="Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
+<meta name="twitter:description" content="📃 논문 보기 Abstract 다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.">
 <meta name="twitter:image" content="https://i.imgur.com/NdPFKhP.png">
 
 
@@ -166,7 +166,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 minutes read (About 2056 words)
+                    14 minutes read (About 2066 words)
                 </span>
                 
             </div>
@@ -178,11 +178,12 @@
             
         </h1>
         <div class="content">
-            <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><ul>
+            <p><strong><a href="https://arxiv.org/abs/1704.06485" target="_blank" rel="noopener">📃 논문 보기</a></strong></p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><ul>
 <li>다양한 타입의 context 정보에 대한 저장소로 memory를 이용, 이전에 생성된 단어들을 memory에 추가, CNN을 이용해는 memory 정보를 추출하는 과정을 통해 개인화된 captioning을 할 수 있었다.<a id="more"></a>
 </li>
 </ul>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
 <li>이미지에 대한 알고리즘 뿐만 아니라 자연스러운 문장을 만들기 위해 이미지에 대한 해석과 언어 모델을 연결시켜야 됐다.</li>
 <li>해당 논문은 image captioning에서 개인화 문제를 다룬다.</li>
 <li>논문에서는 <strong>유저가 사용하는 단어와 문체</strong>를 고려해 이미지에 대한 묘사를 만들어낸다. </li>
@@ -191,7 +192,7 @@
 <li>두 task 모두 word sequence 예측으로 볼 수 있기 때문에 dict만 바꾸면서 같은 model을 사용했다.</li>
 <li>다만, 해쉬 태그를 순서가 없다고 간주하지 않고 게시글과 같이 순서가 있다고 전제했다.</li>
 </ul>
-<h1 id="4-The-Context-Sequence-Memory-Network"><a href="#4-The-Context-Sequence-Memory-Network" class="headerlink" title="4. The Context Sequence Memory Network"></a>4. The Context Sequence Memory Network</h1><p><img src="https://i.imgur.com/NdPFKhP.png" alt="Imgur"></p>
+<h1 id="The-Context-Sequence-Memory-Network"><a href="#The-Context-Sequence-Memory-Network" class="headerlink" title="The Context Sequence Memory Network"></a>The Context Sequence Memory Network</h1><p><img src="https://i.imgur.com/NdPFKhP.png" alt="Imgur"></p>
 <ul>
 <li>(a): image description과 유저의 이전 게시글을 통해 context memory를 설정한다.</li>
 <li>(b): memory state를 기반으로 매 time step t마다 단어를 예측한다.</li>
@@ -200,7 +201,7 @@
 <li>즉, $${y_t}$$는 해쉬 태그와 게시글에 대응한다.</li>
 <li>선택적인 인풋은 메모리에 더해지는 해당 유저의 활성 단어들과 같은 context 정보이다.</li>
 </ul>
-<h2 id="4-1-Construction-of-Context-Memory"><a href="#4-1-Construction-of-Context-Memory" class="headerlink" title="4.1. Construction of Context Memory"></a>4.1. Construction of Context Memory</h2><ul>
+<h2 id="Construction-of-Context-Memory"><a href="#Construction-of-Context-Memory" class="headerlink" title="Construction of Context Memory"></a>Construction of Context Memory</h2><ul>
 <li>세 가지 종류의 context 정보를 저장하기 위해 메모리를 만들었다. <ol>
 <li>쿼리 이미지에 대한 표현을 위한 <em>image memory</em></li>
 <li>유저의 이전 게시글을 기반으로 하고 TF-IDF로 가중치를 둔 D개의 빈번한 단어들에 대한 <em>user context memory</em></li>
@@ -257,7 +258,7 @@
 <ul>
 <li>m은 메모리의 사이즈를 나타내고 세 개의 메모리 타입의 크기의 합이다.</li>
 </ul>
-<h2 id="4-2-State-Based-Sequence-Generation"><a href="#4-2-State-Based-Sequence-Generation" class="headerlink" title="4.2. State-Based Sequence Generation"></a>4.2. State-Based Sequence Generation</h2><ul>
+<h2 id="State-Based-Sequence-Generation"><a href="#State-Based-Sequence-Generation" class="headerlink" title="State-Based Sequence Generation"></a>State-Based Sequence Generation</h2><ul>
 <li>RNN이 sequence 생성에 많이 쓰이지만 우리는 쓰지 않았다. 대신 순차적으로 memory에 이전까지 만들어진 모든 단어를 저장한다.</li>
 <li>각각의 아웃풋 단어를 예측하는 건 모든 이전 단어들, 이미지 구역, user context의 조합에 선별적으로 attention을 줌으로써 이루어진다.</li>
 <li>memory state를 기반으로 time step t에서 단어 $$y_t$$에 대한 예측이 어떻게 이루어지는지 살펴보자.</li>
@@ -720,21 +721,21 @@
         <span class="has-mr-6">1</span>
         <span>Abstract</span>
         </a></li><li>
-        <a class="is-flex" href="#1-Introduction">
+        <a class="is-flex" href="#Introduction">
         <span class="has-mr-6">2</span>
-        <span>1. Introduction</span>
+        <span>Introduction</span>
         </a></li><li>
-        <a class="is-flex" href="#4-The-Context-Sequence-Memory-Network">
+        <a class="is-flex" href="#The-Context-Sequence-Memory-Network">
         <span class="has-mr-6">3</span>
-        <span>4. The Context Sequence Memory Network</span>
+        <span>The Context Sequence Memory Network</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#4-1-Construction-of-Context-Memory">
+        <a class="is-flex" href="#Construction-of-Context-Memory">
         <span class="has-mr-6">3.1</span>
-        <span>4.1. Construction of Context Memory</span>
+        <span>Construction of Context Memory</span>
         </a></li><li>
-        <a class="is-flex" href="#4-2-State-Based-Sequence-Generation">
+        <a class="is-flex" href="#State-Based-Sequence-Generation">
         <span class="has-mr-6">3.2</span>
-        <span>4.2. State-Based Sequence Generation</span>
+        <span>State-Based Sequence Generation</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#Result">
         <span class="has-mr-6">4</span>
@@ -913,21 +914,21 @@
         <span class="has-mr-6">1</span>
         <span>Abstract</span>
         </a></li><li>
-        <a class="is-flex" href="#1-Introduction">
+        <a class="is-flex" href="#Introduction">
         <span class="has-mr-6">2</span>
-        <span>1. Introduction</span>
+        <span>Introduction</span>
         </a></li><li>
-        <a class="is-flex" href="#4-The-Context-Sequence-Memory-Network">
+        <a class="is-flex" href="#The-Context-Sequence-Memory-Network">
         <span class="has-mr-6">3</span>
-        <span>4. The Context Sequence Memory Network</span>
+        <span>The Context Sequence Memory Network</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#4-1-Construction-of-Context-Memory">
+        <a class="is-flex" href="#Construction-of-Context-Memory">
         <span class="has-mr-6">3.1</span>
-        <span>4.1. Construction of Context Memory</span>
+        <span>Construction of Context Memory</span>
         </a></li><li>
-        <a class="is-flex" href="#4-2-State-Based-Sequence-Generation">
+        <a class="is-flex" href="#State-Based-Sequence-Generation">
         <span class="has-mr-6">3.2</span>
-        <span>4.2. State-Based Sequence Generation</span>
+        <span>State-Based Sequence Generation</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#Result">
         <span class="has-mr-6">4</span>
