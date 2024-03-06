@@ -16,7 +16,7 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          pyspark ch2-3 - 박홍 데이터베이스
+          [PySpark_#1] 파이썬을 활용한 스파크 프로그래밍, (1장/8장) - 박홍 데이터베이스
         
     </title>
 
@@ -473,8 +473,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#스터디" title="스터디">스터디</a>
+                            
+                              <a class="tag" href="/tags/#PySpark" title="PySpark">PySpark</a>
+                            
                         </div>
-                        <h1>pyspark ch2-3</h1>
+                        <h1>[PySpark_#1] 파이썬을 활용한 스파크 프로그래밍, (1장/8장)</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 박홍 on
@@ -484,8 +488,8 @@
                         
                             <div class="blank_box"></div>
                             <span class="meta">
-                                Words <span class="post-count">10</span> and
-                                Reading Time <span class="post-count">1</span> Minutes
+                                Words <span class="post-count">804</span> and
+                                Reading Time <span class="post-count">5</span> Minutes
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -548,14 +552,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/categories/">Categories</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/categories/">Categories</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -624,7 +628,96 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="제목1"><a href="#제목1" class="headerlink" title="제목1"></a>제목1</h1><h2 id="제목1-1"><a href="#제목1-1" class="headerlink" title="제목1-1"></a>제목1-1</h2><h1 id="제목2"><a href="#제목2" class="headerlink" title="제목2"></a>제목2</h1><h2 id="제목2-1"><a href="#제목2-1" class="headerlink" title="제목2-1"></a>제목2-1</h2>
+                <h1 id="소개"><a href="#소개" class="headerlink" title="소개"></a>소개</h1><p>Spark스터디에 참여할 수 있는 좋은 기회가 생겼다.<br>아래의 책을 여러 명이 읽어보고 정리하면서 서로의 생각을<br>공유하는 스터디 이며 그 첫 장을 여는 포스팅.<br>많이 부족하고 처음 작성해 보는 포스팅이라 서툴 수 있는데<br>열심히 노력해서 다른 분들처럼 멋있는 글을 써보고 싶덩<br><img src="https://velog.velcdn.com/images/devhyung/post/ff036e01-88e8-4423-8272-9e1dd18db6dc/image.png" alt="읽을 책 표지"></p>
+<hr>
+<h1 id="Keywords-amp-Terms"><a href="#Keywords-amp-Terms" class="headerlink" title="Keywords &amp; Terms"></a>Keywords &amp; Terms</h1><p>&gt;</p>
+<ul>
+<li>HDFS(Hadoop Distributed File System)</li>
+<li>YARN(Yet Another Resource Negotiator)</li>
+<li>data locality, shared nothing, map-reduce</li>
+<li>schema-on-write &lt;-&gt; schema-on-read</li>
+<li>RDD(Resilient Destributed Dataset)</li>
+<li>fault-tolerant 내결함성</li>
+</ul>
+<hr>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>책은 8 Chapter지만, 2 Part로 나눌 수 있음.<br><strong>Part 1 - 스파크 기초 (ch.1 ~ ch.4)</strong><br><strong>Part 2 - 스파크 응용 (ch.5 ~ ch.8)</strong><br>1장에서는</p>
+<ul>
+<li>Big Data, Hadoop 소개 </li>
+<li>HDFS, YARN 소개 </li>
+<li>Spark 소개</li>
+<li>PySpark에 필요한 Python 기본<br>을 설명하는 챕터</li>
+</ul>
+<hr>
+<h1 id="PySpark"><a href="#PySpark" class="headerlink" title="PySpark"></a>PySpark</h1><p>이걸 왜 써요 ? 라는 사람들에게 하는 좋은 비유</p>
+<blockquote>
+<p>예전에는 무거운 짐을 싣기 위해서 소를 이용했는데,<br>한 마리의 소를 이용해서 짐을 싣을 수 없을 경우에는<br>더 힘이 센 소를 찾기 보단<br>여러 마리의 소를 이용해 짐을 옮기는 방법이 효율적이지 않나?<br>빅데이터도 그렇다 - 그레이스 호퍼 제독</p>
+</blockquote>
+<h2 id="ㄴ-Big-Data-Hadoop"><a href="#ㄴ-Big-Data-Hadoop" class="headerlink" title="ㄴ Big Data, Hadoop"></a>ㄴ Big Data, Hadoop</h2><h3 id="ㄴㄴ-빅데이터와-하둡의-탄생"><a href="#ㄴㄴ-빅데이터와-하둡의-탄생" class="headerlink" title="ㄴㄴ 빅데이터와 하둡의 탄생"></a>ㄴㄴ 빅데이터와 하둡의 탄생</h3><p>2000년대 구글, 야후가 시작 한 싸움 -&gt;<br>구글은 2003년에 <code>더 구글 파일 시스템</code> 이라는 논문을 시작으로<br>2004년에 Map-Reduce 논문을 발표함 이게 추후의 Hadoop의 시초 -&gt;<br>야후가 2006년 공식적 Hadoop을 채택하고 구글의 인적자원을 가져감</p>
+<h3 id="ㄴㄴ-Hadoop"><a href="#ㄴㄴ-Hadoop" class="headerlink" title="ㄴㄴ Hadoop?"></a>ㄴㄴ Hadoop?</h3><blockquote>
+<p>Hadoop은 데이터 지역성이라는 개념에 바탕을 둔 데이터 저장 및 처리 플랫폼이다<br>=&gt; 책에서는 저렇게 정의를 했는데 내 식으로 다시 정의해보면<br>큰 문제(데이터)를 작은 문제(데이터)로 나눠서 저장 및 문제를 해결하려는<br>좋은 도구 같음</p>
+</blockquote>
+<p><code>데이터지역성(data locality)</code>(이)란 데이터를 호스트로 보내 처리하는 기존 방식과 달리,<br>데이터가 있는 곳으로 이동해서 계산하는 데이터 처리방식임(오? 신박함)</p>
+<p>각 Node는 다른 Node들과 통신 할 필요없이 전체 데이터의 훨씬 작은 부분을 독립적으로<br>처리하면서 분산 파일 시스템의 구현을 통해 해결함<br>이걸 가능하게 하는 게 <code>비공유 접근(shared nothing)</code>개념<br><code>schema-on-read</code>시스템으로 스키마가 따로 없기에 광범위한 데이터를 저장하고 처리 할 수 있는게 특징임</p>
+<h3 id="ㄴㄴ-Component-of-Hadoop"><a href="#ㄴㄴ-Component-of-Hadoop" class="headerlink" title="ㄴㄴ Component of Hadoop"></a>ㄴㄴ Component of Hadoop</h3><ul>
+<li><strong>HDFS</strong>(Hadoop Distributed File System) : 하둡의 스토리지 서브시스템</li>
+<li><strong>YARN</strong>(Yet Another Resource Negotiator) : 하둡의 프로세싱 또는 리소스 스케줄링 서브시스템</li>
+<li>Flume, Sqoop = 데이터 처리 프로젝트</li>
+<li>Pig, Hive = 데이터 분석 툴<br>하둡과 상호 작용하거나 통합하는 프로젝트를 <strong>하둡에코시스템</strong> 이라고 함.<br><em>*근데 스파크는 하둡을 실행 할 필요가 없어서 에코시스템인지 논란의 여지가 있음</em></li>
+</ul>
+<hr>
+<h2 id="ㄴ-HDFS-YARN-소개"><a href="#ㄴ-HDFS-YARN-소개" class="headerlink" title="ㄴ HDFS, YARN 소개"></a>ㄴ HDFS, YARN 소개</h2><h3 id="ㄴㄴ-HDFS"><a href="#ㄴㄴ-HDFS" class="headerlink" title="ㄴㄴ HDFS"></a>ㄴㄴ HDFS</h3><p>클러스터의 하나 이상의 노드에 파일이 분산되어 있는 블럭으로 구성된 가상 파일 시스템<br><img src="https://velog.velcdn.com/images/devhyung/post/ba9a9059-7d8f-49e8-ac4f-82f04f889a51/image.png" alt=""><br>적재 프로세스 설명</p>
+<ul>
+<li>Ingestion 프로세스는 설정한 블록크기에 따라 파일을 나눔 </li>
+<li>노드 간 분산 및 복제해서 fault-tolerance 달성하고 로컬에서 처리</li>
+<li>HDFS블록은 <code>DN:데이터노트</code>라는 슬레이브 노드에 저장 및 관리됨</li>
+<li>이런 정보들은 <code>NN:네임노드</code>라는 HDFS 마스터 노드 상주 메모리에 <code>MD:메타데이터</code>로 저장</li>
+<li><code>네임노드</code>는 RDB 트랜잭션로그처럼 저널링함수를 통해 <code>메타데이터</code>위치 제공(맵핑테이블 느낌)<br><img src="https://velog.velcdn.com/images/devhyung/post/3dbeb6b0-f8e9-4937-a2fe-246c764db6af/image.png" alt=""></li>
+</ul>
+<h3 id="ㄴㄴ-YARN"><a href="#ㄴㄴ-YARN" class="headerlink" title="ㄴㄴ YARN"></a>ㄴㄴ YARN</h3><p>YARN은 Hadoop의 데이터를 처리하고 스케쥴링하는 역할</p>
+<blockquote>
+<p>뜻이 궁금해서 쳐봤는데<br>“Yet another”는 일반적으로 이미 많은 것들이 존재하고 있는 상황에서 추가로 하나를 가리키는 표현입니다. 따라서 “yet another resource negotiation”은 이미 다른 자원 협상이 있었음에도 불구하고 추가로 하나가 이루어지고 있다는 의미를 갖는다고 합니다 </p>
+</blockquote>
+<p>설명하는 도식은 아래<br><img src="https://velog.velcdn.com/images/devhyung/post/a5173f5d-1600-4119-9378-ec6607877bae/image.png" alt=""><br>순서를 설명하면</p>
+<ul>
+<li>1) 클라이언트 -&gt; <code>리소스 매니저</code> 작업 시킴</li>
+<li>2) <code>리소스 매니저</code>는 <code>노드매니저</code>에게, <code>애플리케이션 마스터(AM)</code>을 할당</li>
+<li>3) <code>AM</code>은 실행할 작업컨테이너 협상하고 관리할 <code>노드매니저</code>로 전달 </li>
+<li>4) <code>노드매니저</code>는 (2)의<code>AM</code>에게 보고</li>
+<li>5) <code>AM</code>은 (1)의<code>리소스매니저</code>에게 보고</li>
+<li>6) <code>리소스 매니저</code>는 클라에게 보고 </li>
+<li>자세한건 3장에 있음 </li>
+</ul>
+<p>보통 8088에 웹 UI를 제공</p>
+<hr>
+<h2 id="ㄴ-Spark-소개"><a href="#ㄴ-Spark-소개" class="headerlink" title="ㄴ Spark 소개"></a>ㄴ Spark 소개</h2><p>Hadoop의 맵리듀스 구현에 대안으로 만들어져 매우 효율적이라고 함<br>특징 </p>
+<ul>
+<li>맵리듀스를 대체할 수 있는 리소스 스케줄링, 오케스트레이션 시스템을 검토하도록 설계</li>
+<li>맵리듀스 대안으로 스파크는 RDD(Resilient Destributed Dataset) 탄력적인 분산 데이터 집합이라고 분리는 분산형, 내결함성(fault-tolerant), 인메모리 구조를 구현</li>
+<li>스칼라로 작성되어있고 JVM에서 실행됨 </li>
+<li>파이썬이랑 스칼라 인터프리터식으로 쿼리가능 </li>
+<li>Hadoop의 데이터 처리 프레임워크로 Spark를 배포할 수 있음(일반적으로는 HDFS 인데)</li>
+</ul>
+<hr>
+<h2 id="ㄴ-PySpark를-위한-기초-python"><a href="#ㄴ-PySpark를-위한-기초-python" class="headerlink" title="ㄴ PySpark를 위한 기초 python"></a>ㄴ PySpark를 위한 기초 python</h2><p>여기서는 어느정도 python을 안다고 가정하고 다른 부분만 기술함 </p>
+<ul>
+<li>스파크RDD list 객체는 변경이 안됨</li>
+<li>tuple은 같은데, Spark에선 키/값 쌍으로 많이 쓴다고함(? 왜 dict냅두고)</li>
+<li>dict는 RDD에서 <strong>고정객체</strong>로 쓸수 있다고 함(? 고정객체는 뭐지)</li>
+<li>피클은 파이썬의 특징적인 직렬화 메소드, Json 보다 빠른데 PySpark에서 많이 프로세스간 데이터 전송하는데 많이 쓴다고함</li>
+<li>익명함수 &amp; Lambda를 많이 쓴다고 함 실제 예는 아래에 기술</li>
+<li>클로저함수도 많이 씀, 분산환경에서 중요한 이점을 가질 수 있다는데 함수 구성에따라 오히려 독이 될수도 있다고함 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lines &#x3D; sc.textFile(&quot;YOUR&#x2F;DIR&#x2F;FILE&quot;)</span><br><span class="line">counts &#x3D; lines.flatMap(lambda x: x.split(&#39; &#39;)) \ </span><br><span class="line">	.filter(lambda x: len(x) &gt; 0) \</span><br><span class="line">    .map(lambda x: (x, 1)) \ </span><br><span class="line">    .reduceByKey(lambda x, y: x+y) \</span><br><span class="line">    .collect()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+대략 파일을 읽고 띄어쓰기단위로 split했을때 len()이 1개이상인 애들을 필터링해서<br>reduce하는 느낌이네 </li>
+</ul>
+<hr>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h1><p>위 챕터랑 정리를하면서 궁금증이 남는 것 + 알아봤으면 좋겠는 걸 따로 기록</p>
+<ul>
+<li>[ ] 왜 굳이 같은 데이터(블록)을 복제해서 저장할까? 유실될까 걱정? 아니면 블록체인식의 저장방법인건지 </li>
+<li>[ ] 그렇다면 몇개까지 복제하는게 최적화된 복제블록일까? 너무 많으면 오버해서 저장하는 거 같고 너무 적으면 나누는 의미가 있을까 싶은데 이것도 국룰적인 복제개수가 존재할까 ? </li>
+<li>[ ] 클로저 펑션을 왜 써야하는지 사실 이해가 되진않음. 이게 왜 분산된환경에서 쓰면 이점이 있으려나 </li>
+</ul>
+<hr>
+<h1 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h1><p>다음은 위의 Why세션에 대한 조사와,<br>2장 스파크 배포 에 대해서 포스팅 할 예정입니다 ~ </p>
+
                 
                 <hr>
                 <!-- Pager -->
@@ -684,7 +777,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#제목1"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">제목1</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#제목1-1"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">제목1-1</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#제목2"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">제목2</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#제목2-1"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">제목2-1</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#소개"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">소개</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Keywords-amp-Terms"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Keywords &amp; Terms</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Summary"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Summary</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#PySpark"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">PySpark</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ㄴ-Big-Data-Hadoop"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">ㄴ Big Data, Hadoop</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ㄴㄴ-빅데이터와-하둡의-탄생"><span class="toc-nav-number">4.1.1.</span> <span class="toc-nav-text">ㄴㄴ 빅데이터와 하둡의 탄생</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ㄴㄴ-Hadoop"><span class="toc-nav-number">4.1.2.</span> <span class="toc-nav-text">ㄴㄴ Hadoop?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ㄴㄴ-Component-of-Hadoop"><span class="toc-nav-number">4.1.3.</span> <span class="toc-nav-text">ㄴㄴ Component of Hadoop</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ㄴ-HDFS-YARN-소개"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">ㄴ HDFS, YARN 소개</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ㄴㄴ-HDFS"><span class="toc-nav-number">4.2.1.</span> <span class="toc-nav-text">ㄴㄴ HDFS</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ㄴㄴ-YARN"><span class="toc-nav-number">4.2.2.</span> <span class="toc-nav-text">ㄴㄴ YARN</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ㄴ-Spark-소개"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">ㄴ Spark 소개</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ㄴ-PySpark를-위한-기초-python"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">ㄴ PySpark를 위한 기초 python</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Why"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Why?</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Next"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Next</span></a></li></ol>
             
           
           </div>
@@ -706,6 +799,10 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#스터디" title="스터디">스터디</a>
+                        
+                          <a class="tag" href="/tags/#PySpark" title="PySpark">PySpark</a>
+                        
                     </div>
                 </section>
                 
