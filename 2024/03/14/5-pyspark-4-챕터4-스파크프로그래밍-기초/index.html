@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          Tags - 박홍 데이터베이스
+          pyspark 스파크 프로그래밍 기초 학습 - 박홍 데이터베이스
         
     </title>
 
-    <link rel="canonical" href="https://dusign.net/tags/">
+    <link rel="canonical" href="https://dusign.net/2024/03/14/5-pyspark-4-챕터4-스파크프로그래밍-기초/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -451,8 +451,8 @@
     header.intro-header{
         
             
-                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/img/header_img/tag-bg.jpg')
-                /*page*/
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../../../../img/default.jpg')
+                /*post*/
             
         
     }
@@ -470,10 +470,35 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>Tags</h1>
-                        <!--<hr class="small">-->
-                        <span id="subdusi" class="subheading">One way to get the most out of life is to look upon it as an adventure.</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#스터디" title="스터디">스터디</a>
+                            
+                              <a class="tag" href="/tags/#PySpark" title="PySpark">PySpark</a>
+                            
+                        </div>
+                        <h1>pyspark 스파크 프로그래밍 기초 학습</h1>
+                        <h2 class="subheading">[PySpark_#4] 파이썬을 활용한 스파크 프로그래밍, (4장/8장)</h2>
+                        <span class="meta">
+                            Posted by 박홍 on
+                            2024-03-14
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">366</span> and
+                                Reading Time <span class="post-count">2</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
                     </div>
                 
 
@@ -592,192 +617,227 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_clouds' class="tags">
-                
-                    <a href="#스터디" title="스터디" rel="4">스터디</a>
-                
-                    <a href="#PySpark" title="PySpark" rel="4">PySpark</a>
-                
-            </div>
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-            <!-- 标签列表 -->
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="스터디">
-                    <span class="tag-text">스터디</span>
-                </span>
+                <h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><blockquote>
+<p>챕터4에서는 pyspark의 기본적인 RDD관련 내용이 나옴<br>page수가 많아서 걱정했는데 그냥 … 코드블럭과 기본적인 연산이<br>어떻게 일어나는지에 대한 하나하나의 설명이였다.<br>기초적인 내용이라 뒤의 내용에서 하나씩 참고해서 보면 좋을만한 내용이 있던 장</p>
+</blockquote>
+<hr>
+<h1 id="Keywords-amp-Terms"><a href="#Keywords-amp-Terms" class="headerlink" title="Keywords &amp; Terms"></a>Keywords &amp; Terms</h1><ul>
+<li>RDD(Resilient Destributed Dataset)</li>
+<li>RDD transformation &amp; action = action때 spark는 일함 </li>
+<li>Fault tolerant = MR가 대비해 spark가 error가 나면 어떻게 복구될까?를 생각</li>
+<li>Lineage = RDD의 생성순서 </li>
+<li>DAG(Directed Acyclic Graph) = 특정job이 돌기위해 실행되는 프로레스 </li>
+<li>Transformations = Lazy operations = why? = 최적의 DAG를 Actions단계에서 찾기위해 </li>
+</ul>
+<hr>
+<p>내용은 아래와 같다고 한다 </p>
+<ul>
+<li>RDD </li>
+<li>RDD load at spark</li>
+<li>RDD transformation &amp; action</li>
+<li>RDD 연산</li>
+</ul>
+<p>분명 … 책의 소스코드는<br><a href="https://sparkusingpython.com/" target="_blank" rel="noopener">https://sparkusingpython.com/</a><br>와 <a href="https://github.com/sparktraining/spark_using_python" target="_blank" rel="noopener">https://github.com/sparktraining/spark_using_python</a> 에 있다는데…<br>깃허브는 살아있는데  sparkusingpython 사이트는 없어졌네 하하 …<br>깃허브는… 챕터별로 정리가된것도아니고 하하 이게 뭐지…</p>
+<h2 id="RDDs"><a href="#RDDs" class="headerlink" title="RDDs"></a>RDDs</h2><ul>
+<li>RDDs (Resilient Distributed Datasets) is Data Containers = 탄력적인 분산 데이터셋 = 데이터 컨테이너를 의미 </li>
+<li>스파크의 모든 다른 프로세싱들은 RDD abstraction을 share함</li>
+<li>transformations을 하든 섞든 뭘 하든 해서 새로운 RDDs를 만들고 할 수 있음 </li>
+<li>Fault tolerant </li>
+</ul>
+<p>예제<br><img src="Pasted image 20240314194432.png" alt="예제"><br>여기서 에러만 디텍팅하고싶다<br>파일을 읽으면 Base RDD lines 가 생김 -&gt;<br>여기서 filter를 걸면 새로운 errors RDD 가 생김 -&gt;<br>count하는게 action 단계인거고 </p>
+<p><img src="Pasted image 20240314194827.png" alt="예제"><br>물리적인 노드에서 발생하는 처리를 보면<br>driver와 다수의 worker<br>driver = main 함수 라고 생각<br>코드가 서밋되면 클러스터안에서 분배가 될거고<br>hdfs에서 파일을 읽으면 =&gt; 블럭단위로 분산되어서 저장 =&gt; 캐시가되면 워커의 메모리영역중<br>일부를 캐시영역으로<br>transformed RDD가 계속 생성이되면 그 결과값을 driver쪽으로 던져주는</p>
+<p><img src="Pasted image 20240314195050.png" alt="예제"><br>그럼 여기서 Fault Tolerance란 뭐냐면<br>MR는 매번 I/O가 일어나니까 만약 중간에 에러가나면<br>이걸 다시 읽고 하고 하면됨<br>spark에선 rework를 어떻게하냐<br>만약 mapled RDD에서 만약 뻗었다 =&gt; 그럼 FilteredRDD부터 다시 수행함<br>이렇게해서 Fault Tolerance 를 보장함</p>
+<p><img src="Pasted image 20240314200201.png" alt="예제"><br>연산에 대해서는<br>transformations 는 map filter groupby join 이런거 RDD로 다른 RDD를 만들어보다보니 Lazy operations<br>spark이 일을하는 단계는 Actions을 해야함 count, collect, save, show 이런것들 storage에 읽고쓰는거<br>왜 저걸 Lazy하게 할까 ? =&gt; (DAG = 특정잡이 돌기위해 실행되는 프로세스) 최적의 DAG를 Actions단계에서 찾기위해서<br>lineage는 RDD의 생성순서를 뜻하고</p>
+<p><img src="Pasted image 20240314200508.png" alt="예제"></p>
+<ul>
+<li>처음의  RDD를 읽고 계속변환함 = Transformation = 새로운 RDD가 계속 생성</li>
+<li>Lineage 트래킹하면서 fault tolerance 제공하는거고 </li>
+<li>action이 일어나면 저장하든가 그럼</li>
+</ul>
+<p><img src="Pasted image 20240314200607.png" alt="예제"></p>
+<ul>
+<li>Transformation : 새로운 RDD를 생성한다</li>
+<li>Actions : 드라이버쪽으로 결과를 리턴하거나 세이브하는것들 = spark이 일을하는 시점 </li>
+</ul>
+<p><img src="Pasted image 20240314200757.png" alt="예제"></p>
+<ul>
+<li>RDD -&gt; DF 오면서 분석석도가 뙤또이해짐 </li>
+</ul>
+
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/02/26/3-pyspark-2-챕터2/">
-                        <h2 class="post-title">
-                            [PySpark_#2] 파이썬을 활용한 스파크 프로그래밍, (2장/8장)
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                스파크 배포
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
                 <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/03/07/4-pyspark-3-챕터3-스파크-아키텍처/" data-toggle="tooltip" data-placement="top" title="[PySpark_#3] 파이썬을 활용한 스파크 프로그래밍, (3장/8장)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/02/08/pyspark-ch2-3/">
-                        <h2 class="post-title">
-                            [PySpark_#1] 파이썬을 활용한 스파크 프로그래밍, (1장/8장)
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                빅데이터, 하둡 및 스파크 소개
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+
+                
+                <div class="comment_notes">
+                    <p>
+                        Copyright © 2024 박홍(박형준, DevHyung).
+                    </p>
                 </div>
-                <hr>
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/03/14/5-pyspark-4-챕터4-스파크프로그래밍-기초/">
-                        <h2 class="post-title">
-                            pyspark 스파크 프로그래밍 기초 학습
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                [PySpark_#4] 파이썬을 활용한 스파크 프로그래밍, (4장/8장)
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
                 </div>
-                <hr>
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/03/07/4-pyspark-3-챕터3-스파크-아키텍처/">
-                        <h2 class="post-title">
-                            [PySpark_#3] 파이썬을 활용한 스파크 프로그래밍, (3장/8장)
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                스파크 클러스터 아키텍처의 이해
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="PySpark">
-                    <span class="tag-text">PySpark</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/02/26/3-pyspark-2-챕터2/">
-                        <h2 class="post-title">
-                            [PySpark_#2] 파이썬을 활용한 스파크 프로그래밍, (2장/8장)
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                스파크 배포
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/02/08/pyspark-ch2-3/">
-                        <h2 class="post-title">
-                            [PySpark_#1] 파이썬을 활용한 스파크 프로그래밍, (1장/8장)
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                빅데이터, 하둡 및 스파크 소개
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/03/14/5-pyspark-4-챕터4-스파크프로그래밍-기초/">
-                        <h2 class="post-title">
-                            pyspark 스파크 프로그래밍 기초 학습
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                [PySpark_#4] 파이썬을 활용한 스파크 프로그래밍, (4장/8장)
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2024/03/07/4-pyspark-3-챕터3-스파크-아키텍처/">
-                        <h2 class="post-title">
-                            [PySpark_#3] 파이썬을 활용한 스파크 프로그래밍, (3장/8장)
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                스파크 클러스터 아키텍처의 이해
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
+                <!-- disqus comment end -->
             </div>
             
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Summary"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Summary</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Keywords-amp-Terms"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Keywords &amp; Terms</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RDDs"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">RDDs</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#스터디" title="스터디">스터디</a>
+                        
+                          <a class="tag" href="/tags/#PySpark" title="PySpark">PySpark</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.linkedin.com/in/박형준/" target="_blank">Hong&#39;s LinkedIn</a></li>
+                    
+                        <li><a href="https://github.com/devhyung" target="_blank">Hong&#39;s Github</a></li>
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
         </div>
     </div>
-</div>
+</article>
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "devhyung-github";
+    var disqus_identifier = "https://dusign.net/2024/03/14/5-pyspark-4-%EC%B1%95%ED%84%B04-%EC%8A%A4%ED%8C%8C%ED%81%AC%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EA%B8%B0%EC%B4%88/";
+    var disqus_url = "https://dusign.net/2024/03/14/5-pyspark-4-%EC%B1%95%ED%84%B04-%EC%8A%A4%ED%8C%8C%ED%81%AC%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EA%B8%B0%EC%B4%88/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
