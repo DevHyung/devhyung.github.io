@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          박홍 데이터베이스
+          pyspark 캐싱, partitioning, broadcast, accumulater 설명 - 박홍 데이터베이스
         
     </title>
 
-    <link rel="canonical" href="https://dusign.net/archives/2024/03/">
+    <link rel="canonical" href="https://dusign.net/2024/03/21/6-pyspark-5-챕터5-스파크-코어-API를-사용한-고급-프로그래밍/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -451,8 +451,8 @@
     header.intro-header{
         
             
-                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/undefined')
-                /*page*/
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../../../../img/default.jpg')
+                /*post*/
             
         
     }
@@ -470,10 +470,35 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>P.HONG DB</h1>
-                        <!--<hr class="small">-->
-                        <span id="subdusi" class="subheading">At the bottom of the well, it is destined to see only the sky at the wellhead. However, the starting point only affects the process of reaching your peak and does not determine the height you reach.</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#스터디" title="스터디">스터디</a>
+                            
+                              <a class="tag" href="/tags/#PySpark" title="PySpark">PySpark</a>
+                            
+                        </div>
+                        <h1>pyspark 캐싱, partitioning, broadcast, accumulater 설명</h1>
+                        <h2 class="subheading">[PySpark_#5] 파이썬을 활용한 스파크 프로그래밍, (5장/8장)</h2>
+                        <span class="meta">
+                            Posted by 박홍 on
+                            2024-03-21
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">292</span> and
+                                Reading Time <span class="post-count">1</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
                     </div>
                 
 
@@ -592,304 +617,248 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-    <!-- Post Container -->
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-                
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
-            
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
-
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2024">
-                    <span class="tag-text">2024</span>
-                </span>
-                <ul>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-21
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2024/03/21/6-pyspark-5-챕터5-스파크-코어-API를-사용한-고급-프로그래밍/" style="color: #0085a1">
-                        <span>
-                            pyspark 캐싱, partitioning, broadcast, accumulater 설명
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-14
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2024/03/14/5-pyspark-4-챕터4-스파크프로그래밍-기초/" style="color: #0085a1">
-                        <span>
-                            pyspark 스파크 프로그래밍 기초 학습
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-07
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2024/03/07/4-pyspark-3-챕터3-스파크-아키텍처/" style="color: #0085a1">
-                        <span>
-                            [PySpark_#3] 파이썬을 활용한 스파크 프로그래밍, (3장/8장)
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-26
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2024/02/26/3-pyspark-2-챕터2/" style="color: #0085a1">
-                        <span>
-                            [PySpark_#2] 파이썬을 활용한 스파크 프로그래밍, (2장/8장)
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    02-08
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2024/02/08/pyspark-ch2-3/" style="color: #0085a1">
-                        <span>
-                            [PySpark_#1] 파이썬을 활용한 스파크 프로그래밍, (1장/8장)
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                </ul>
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-            </div>
-
-            <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        
-<!--
-<h5>SEARCH</h5>
-<div class="search-article" class="tags">
-	<input id="search-kw" type="text" name="search_article" placeholder="Enter keywords for search" />
-	<div class="search-img">
-		<img 
-			src="/img/search.png" 
-			alt="search" 
-			onMouseOver="this.src='/img/search-focus.png'" 
-			onMouseOut="this.src='/img/search.png'"/>
-	</div>
-</div>-->
-
-<h5>SEARCH</h5>
-<div id="site_search">
-	<div class="form-group">
-		<input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
-	</div>  
-	<div id="local-search-result"></div>
-</div>
-
-        <hr>
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-            <a href="/tags/#스터디" title="스터디" rel="5">스터디</a>
-            
-        
-            
-            <a href="/tags/#PySpark" title="PySpark" rel="5">PySpark</a>
-            
-        
-    </div>
-</section>
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
-
-        
-            <img id = "avatar_pic" src="/img/ironman-draw.png" />
-        
-
-        
-            <p>Welcome to visit, I&#39;m 박홍!</p>
-        
-
-        <!-- SNS Link -->
-        <ul class="list-inline">
-
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/Devhyung">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>VISITORS</h5>
-  <div class="widget">
-    <span>
-    	Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-	</span>
-	<br/>
-	<span>
-		<b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-	</span>
-  </div>
-
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h5>
-  <div class="widget">
+                <h1 id="5장-스파크-코어-API를-사용한-고급-프로그래밍"><a href="#5장-스파크-코어-API를-사용한-고급-프로그래밍" class="headerlink" title="5장 - 스파크 코어 API를 사용한 고급 프로그래밍"></a>5장 - 스파크 코어 API를 사용한 고급 프로그래밍</h1><p>5장에서 다루는 내용은</p>
+<ul>
+<li>spark broadcast, accumulater 소개</li>
+<li>RDD partitioning, repartitioning</li>
+<li>RDD 저장옵션</li>
+<li>caching, RDD checkpoint<br>를 다룬다고 한다.</li>
+</ul>
+<hr>
+<h2 id="스파크-공유변수"><a href="#스파크-공유변수" class="headerlink" title="스파크 공유변수"></a>스파크 공유변수</h2><p><img src="Pasted image 20240321195621.png" alt="사진첨부"><br>코드 스니펫으로 따지면<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sc = <span class="type">SparkContext</span>()</span><br><span class="line"></span><br><span class="line">broadcastV1 = sc.broadcast([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]) </span><br><span class="line">broadcastV1.value # [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"></span><br><span class="line">accum = sc.accumulator(<span class="number">0</span>) </span><br><span class="line">accum.add(x)  </span><br><span class="line">accum.value # <span class="number">0</span> + x</span><br></pre></td></tr></table></figure><br>모든 Executors에 인메모리에 띄워서 공유할수있는 방법은 두가지</p>
+<ul>
+<li>broadcas : 드라이버에서 익스큐터들에 로드해서 가지고있기</li>
+<li>accumulators(SV) : executors로 부터 이벤트를 받아서 driver에서 가지고있음<br>(spark streaming에선 long-running 프로세스다보니까 메모리이슈가 생길수도있으니 조심)</li>
+</ul>
+<hr>
+<h2 id="막간을-이용한-recap-Quiz"><a href="#막간을-이용한-recap-Quiz" class="headerlink" title="막간을 이용한 recap Quiz"></a>막간을 이용한 recap Quiz</h2><p>4장을 간단하게 요약하거나 질문을 위해 DAG simple job을 가정해<br>job, stage, task, shuffle을 도식화<br><img src="Pasted image 20240321201824.png" alt="사진첨부"></p>
+<p>아래는 간단한 term들에 대한 퀴즈<br><img src="Pasted image 20240321200329.png" alt="사진첨부"></p>
+<details markdown="1">
+  <summary>👉 정답 확인하기</summary>
+  <div>
     <ul>
-      
-        <li>
-          <a href="/2024/03/21/6-pyspark-5-%EC%B1%95%ED%84%B05-%EC%8A%A4%ED%8C%8C%ED%81%AC-%EC%BD%94%EC%96%B4-API%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EA%B3%A0%EA%B8%89-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/">pyspark 캐싱, partitioning, broadcast, accumulater 설명</a>
-        </li>
-      
-        <li>
-          <a href="/2024/03/14/5-pyspark-4-%EC%B1%95%ED%84%B04-%EC%8A%A4%ED%8C%8C%ED%81%AC%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EA%B8%B0%EC%B4%88/">pyspark 스파크 프로그래밍 기초 학습</a>
-        </li>
-      
-        <li>
-          <a href="/2024/03/07/4-pyspark-3-%EC%B1%95%ED%84%B03-%EC%8A%A4%ED%8C%8C%ED%81%AC-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/">[PySpark_#3] 파이썬을 활용한 스파크 프로그래밍, (3장/8장)</a>
-        </li>
-      
-        <li>
-          <a href="/2024/02/26/3-pyspark-2-%EC%B1%95%ED%84%B02/">[PySpark_#2] 파이썬을 활용한 스파크 프로그래밍, (2장/8장)</a>
-        </li>
-      
-        <li>
-          <a href="/2024/02/08/pyspark-ch2-3/">[PySpark_#1] 파이썬을 활용한 스파크 프로그래밍, (1장/8장)</a>
-        </li>
-      
+      <li>1. transformation</li>
+      <li>2. action</li>
+      <li>3. lazy operation</li>
+      <li>4. running</li>
+      <li>5. persist, DF에선 cache</li>
     </ul>
   </div>
+</details>
 
-        <hr>
-    
-        <!-- Friends Blog -->
+<p><img src="Pasted image 20240321201609.png" alt="사진첨부"></p>
+<details markdown="1">
+ <summary>👉 정답 확인하기</summary>
+  <div>
+    <ul>
+      <li>1. job</li>
+      <li>2. stage</li>
+      <li>3. task</li>
+      <li>4. shuffle</li>
+    </ul>
+  </div>
+</details>
 
-<h5>FRIENDS</h5>
-<ul class="list-inline">
-
-    
-        <li><a href="https://www.linkedin.com/in/박형준/" target="_blank">Hong&#39;s LinkedIn</a></li>
-    
-        <li><a href="https://github.com/devhyung" target="_blank">Hong&#39;s Github</a></li>
-    
-        <li><a href="#" target="_blank">Other</a></li>
-    
+<hr>
+<h2 id="데이터-파티셔닝"><a href="#데이터-파티셔닝" class="headerlink" title="데이터 파티셔닝"></a>데이터 파티셔닝</h2><p><img src="Pasted image 20240321200744.png" alt="사진첨부"><br><img src="Pasted image 20240321200807.png" alt="사진첨부"></p>
+<ul>
+<li>logLinesRDD에 로그들을 읽어서</li>
+<li>lambda 펑션걸어서 Error 로그만 추출한다고하면 errorsRDD가 생성됨</li>
+<li>저기서 이제  .coalesce(2)나  repartitioning으로 파티셔닝을 다시만들수있음</li>
+<li>그 결과 cleanedRDD가 만들어지고</li>
+<li>action func .collect()으로 만들어거 drvier에서 찍어볼수있음</li>
+<li>DAGs들을 만들어지고 action 단계에서 최적화하기위한 노드들을 할당하는 순</li>
+</ul>
+<hr>
+<h2 id="캐싱"><a href="#캐싱" class="headerlink" title="캐싱"></a>캐싱</h2><p>위의 예제의 전체적인 과정을 보면 아래의 그림처럼 요약이 됨<br><img src="Pasted image 20240321201111.png" alt="사진첨부"><br>만약 캐싱과정이 없었다면<br>logRDD -&gt; lambda(filter) -&gt; errorsRDD -&gt; repartitioning -&gt; cleanedRDD -&gt; lambda(filter)<br>이 과정이 중복적으로 .count(), .collect(), .save()하는 action에서 매번 실행되게됨</p>
+<hr>
+<h2 id="RDD-저장옵션"><a href="#RDD-저장옵션" class="headerlink" title="RDD 저장옵션"></a>RDD 저장옵션</h2><ul>
+<li><code>MEMORY_ONLY</code> : default</li>
+<li><code>MEMORY_AND_DISK</code> : 메모리에 저장하기 적절하지않으면 디스크에</li>
+<li><code>MEMORY_ONLY_SER</code> : serialize해서 저장함, 메모리절약되고 다시 deserialize 할때 오버헤드 줄어듦 </li>
+<li><code>MEMORY_AND_DISK_SER</code> : ONLY_SER + AND_DIST</li>
+<li><code>DISK_ONLY</code> : 디스크에만 저장</li>
+<li><code>OFF_HEAP</code> : off-heap 메모리에 ONLY_SER 하게 저장</li>
+</ul>
+<hr>
+<h2 id="다음-포스팅"><a href="#다음-포스팅" class="headerlink" title="다음 포스팅"></a>다음 포스팅</h2><ul>
+<li>197p ~ 이후는 스파크 환경변수, 구성 속성, 구성 우선순위, 스파크 최적화, 병렬처리 최적화 등의<br>내용이 나오는데 .. 솔직히 지금에는 많은 부분이 와닿거나 이해가 되지않아서 정리가 부족했다 :(<br>나중에 다시 돌아와서 실제예에서 필요한 부분은 찾아서 봐야겠다</li>
 </ul>
 
-        <hr>
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/03/14/5-pyspark-4-챕터4-스파크프로그래밍-기초/" data-toggle="tooltip" data-placement="top" title="pyspark 스파크 프로그래밍 기초 학습">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        Copyright © 2024 박홍(박형준, DevHyung).
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
     
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">3월 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">2월 2024</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-
-        <hr>
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#5장-스파크-코어-API를-사용한-고급-프로그래밍"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">5장 - 스파크 코어 API를 사용한 고급 프로그래밍</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#스파크-공유변수"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">스파크 공유변수</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#막간을-이용한-recap-Quiz"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">막간을 이용한 recap Quiz</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#데이터-파티셔닝"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">데이터 파티셔닝</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#캐싱"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">캐싱</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RDD-저장옵션"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">RDD 저장옵션</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#다음-포스팅"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">다음 포스팅</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
     
-        <!-- Categories -->
 
-    <h5>categories</h5>
-    <div class="widget">
-      <ul>
-        
-          <a href="categories/#PySpark"><li>PySpark</li></a>
-        
-      </ul>
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#스터디" title="스터디">스터디</a>
+                        
+                          <a class="tag" href="/tags/#PySpark" title="PySpark">PySpark</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.linkedin.com/in/박형준/" target="_blank">Hong&#39;s LinkedIn</a></li>
+                    
+                        <li><a href="https://github.com/devhyung" target="_blank">Hong&#39;s Github</a></li>
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
     </div>
+</article>
 
-        <hr>
-    
-</div>
 
-        
-    </div>
-</div>
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "devhyung-github";
+    var disqus_identifier = "https://dusign.net/2024/03/21/6-pyspark-5-%EC%B1%95%ED%84%B05-%EC%8A%A4%ED%8C%8C%ED%81%AC-%EC%BD%94%EC%96%B4-API%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EA%B3%A0%EA%B8%89-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/";
+    var disqus_url = "https://dusign.net/2024/03/21/6-pyspark-5-%EC%B1%95%ED%84%B05-%EC%8A%A4%ED%8C%8C%ED%81%AC-%EC%BD%94%EC%96%B4-API%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EA%B3%A0%EA%B8%89-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
